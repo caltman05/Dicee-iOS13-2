@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  Dicee-iOS13
 //
-//  Created by Angela Yu on 11/06/2019.
-//  Copyright © 2019 London App Brewery. All rights reserved.
+//  Created by Carter Altman on 2/17/24.
+//
 //
 
 import UIKit
@@ -26,11 +26,22 @@ class ViewController: UIViewController {
     
     @IBAction func rollButtonPressed(_ sender: UIButton) {
         print("Button got tapped.")
+        let diceArray = [#imageLiteral(resourceName: "DiceOne"),#imageLiteral(resourceName: "DiceTwo"),#imageLiteral(resourceName: "DiceThree"),#imageLiteral(resourceName: "DiceFour"),#imageLiteral(resourceName: "DiceFive"),#imageLiteral(resourceName: "DiceSix")]
         diceImageView1.image = [#imageLiteral(resourceName: "DiceOne"),#imageLiteral(resourceName: "DiceTwo"),#imageLiteral(resourceName: "DiceThree"),#imageLiteral(resourceName: "DiceFour"),#imageLiteral(resourceName: "DiceFive"),#imageLiteral(resourceName: "DiceSix")][leftDiceNumber]
         diceImageView2.image = [#imageLiteral(resourceName: "DiceOne"),#imageLiteral(resourceName: "DiceTwo"),#imageLiteral(resourceName: "DiceThree"),#imageLiteral(resourceName: "DiceFour"),#imageLiteral(resourceName: "DiceFive"),#imageLiteral(resourceName: "DiceSix")][rightDiceNumber]
         
         leftDiceNumber = leftDiceNumber + 1
         rightDiceNumber = rightDiceNumber - 1
+        
+        
+        //
+        
+        let randomNum1 = Int.random(in: 0...5)
+        let randomNum2 = Int.random(in: 0...5)
+        
+        diceImageView1.image = diceArray[randomNum1]
+        diceImageView2.image = diceArray[randomNum2]
+        
     }
     
     @IBAction func roll2ButtonPressed(_ sender: UIButton) {
@@ -49,7 +60,19 @@ class ViewController: UIViewController {
         leftDiceNumber = leftDiceNumber + 1
         rightDiceNumber = rightDiceNumber - 1
         
+        /*
+         diceImageView1.animationImages = diceArray
+         .animationDuration
+         animationRepeatCount
+         
+         Dice enhancement - Keeping historic results.
+         
+         
+         
+         
+         */
     }
+    
     
 }
 
