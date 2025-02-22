@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -19,6 +20,26 @@ class ViewController: UIViewController {
     
     var leftDiceNumber = 1
     var rightDiceNumber = 5
+    var audioPlayer: AVAudioPlayer?
+
+    
+    //Create a function that is able to play a sound for the dice roll
+    func playSound() {
+        guard let soundURL = Bundle.main.url(forResource: "dice", withExtension: "mp3") else {
+            print("An error has occured playing sound")
+            return
+        }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.play()
+        } catch {
+            print("Error playing sound")
+        }
+    }
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +83,7 @@ class ViewController: UIViewController {
         let randomNum2 = Int.random(in: 0...5)
         let randomNum3 = Int.random(in: 0...5)
         
+        playSound()
         diceImageView1.animationImages = diceArray
         diceImageView1.animationRepeatCount = 2
         diceImageView1.startAnimating( )
@@ -74,7 +96,9 @@ class ViewController: UIViewController {
         diceImageView1.image = diceArray[randomNum1]
         diceImageView2.image = diceArray[randomNum2]
         diceImageView3.image = diceArray[randomNum3]
-
+        
+        
+        
          
          
     }
